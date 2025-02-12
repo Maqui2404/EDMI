@@ -1,0 +1,50 @@
+def get_method_description(method):
+    """Return expanded description for each imputation method."""
+    descriptions = {
+        "Simple (Mean)": {
+            "title": "Imputación por Media",
+            "description": """
+            ### ¿Qué es?
+            La imputación por media es una técnica básica que reemplaza los valores faltantes con el promedio de los valores existentes en cada columna.
+            
+            ### Proceso Detallado
+            1. **Cálculo**: Para cada columna numérica:
+               - Se suman todos los valores no faltantes
+               - Se divide entre el número total de valores no faltantes
+               - Se reemplazan los NA con este valor promedio
+            
+            2. **Aplicación**:
+               - Se aplica independientemente a cada columna
+               - Mantiene la media original de la variable
+            
+            ### Consideraciones Estadísticas
+            - **Preservación de la media**: La media de la variable se mantiene igual
+            - **Efecto en la varianza**: Reduce la varianza original
+            - **Efecto en correlaciones**: Puede debilitar las relaciones entre variables
+            
+            ### Casos de Uso Ideales
+            - Variables con distribución normal
+            - Datos faltantes completamente al azar (MCAR)
+            - Pequeña proporción de valores faltantes (<5%)
+            
+            ### Limitaciones
+            1. No considera la estructura de los datos
+            2. Puede distorsionar la distribución
+            3. No apropiado para datos categóricos
+            """,
+            "code_example": """
+            # Ejemplo de implementación
+            from sklearn.impute import SimpleImputer
+            
+            imputer = SimpleImputer(strategy='mean')
+            X_imputed = imputer.fit_transform(X)
+            """
+        },
+        # otros metodos ...xd
+    }
+    return descriptions.get(method, {"title": "Método no encontrado", "description": "Descripción no disponible"})
+
+# Hazlo para todos los métodos "Simple (Mean)", "Simple (Median)", "Simple (Mode)",  "KNN", "MICE", "Regression"
+
+
+# solo dame esta parte del codigo solo la funcion
